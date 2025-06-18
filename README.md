@@ -1,2 +1,2 @@
-# Obligatorio20252
+# Obligatorio2025
 Obligatorio semestral 2025
