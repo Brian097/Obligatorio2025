@@ -19,6 +19,7 @@ public class Main {
      * Puede que no funcione en todas las consolas.
      */
     public static final String VERDE = "\u001B[32m";
+    public static final String CYAN = "\u001B[36m";
     public static final String ROJO = "\u001B[31m";
     public static final String RESET = "\u001B[0m";
 
@@ -49,13 +50,16 @@ public class Main {
     }
 
     /**
-     * METODO PARA PEDIR Y RETORNAR UNA CONTRASEÑA
-     * Este metodo le pide al usuario una contraseña, la convierte en minuscula y la retorna
+     * METODO PARA PEDIR Y RETORNAR UNA CONTRASEÑA EN MINUSCULA
+     * Este metodo le pide al usuario una contraseña, la convierte en minuscula y la retorna.
+     * No se imprime el mensaje acá porque sino se estaria mostrando por cada contraseña que ingresa el usuario.
+     * El objetivo principal del metodo es pedir la contraseña y retornarla en minuscula
      */
     public static String pedirContrasenias(){
+        //Aca guardo la contraseña ingresada
         String contraseniaIngresada = "";
 
-        System.out.println("Ingrese contraseñas una por una (escriba 'fin' para terminar):");
+        //Pido la contraseña
         contraseniaIngresada = entrada.nextLine();
 
         contraseniaIngresada = contraseniaIngresada.toLowerCase(); // Convierto la contraseña ingresada a minuscula
@@ -104,7 +108,7 @@ public class Main {
             }
 
             /*
-             * Al terminar de recorrel el for verifico si la cantidad de caracteres válido es igual a la cantidad
+             * Al terminar de recorrer el for verifico si la cantidad de caracteres válido es igual a la cantidad
              * de caracteres que contiene la contraseña, ya que si esto se cumple significa que la contraseña es válida.
              */
             if (contador == largoContraseña){
@@ -115,14 +119,14 @@ public class Main {
                  * así que establezco la contraseña como invalidae y imprimo un mensaje de que solo se aceptan letras.
                  */
                 valida = false;
-                System.out.println("Solo se permiten letras");
+                System.out.println(VERDE + "║ " + ROJO + "❌ Solo se permiten letras" + RESET);
             }
         } else {
             /*
              * En caso de que la condicion 'largoContraseña >= 1 && largoContraseña <= 20' no se cumpla
              * imprimo un mensaje de error y establezco la contraseña como invalida.
              */
-            System.out.println("Las contraseñas deben contener como mínimo una y como máximo veinte letras.");
+            System.out.println(VERDE + "║ " + ROJO + "❌ Las contraseñas deben contener como mínimo una y como máximo veinte letras." +  RESET);
             valida = false;
         }
 
@@ -250,12 +254,21 @@ public class Main {
         // Imprimimos el "logo" del programa al iniciar
         mostrarBienvenida();
 
+        // Mostrar encabezado del marco
+        System.out.println(VERDE + "╔════════════════════════════════════════════════════════════════════╗");
+        System.out.println(       "║    Ingrese contraseñas una por una (escriba '"+ ROJO + "fin" + VERDE +  "' para terminar)   ║");
+        System.out.println(       "╟────────────────────────────────────────────────────────────────────╝" + RESET);
+
         while (!contraseniaIngresada.equals("fin")){
+            System.out.print(VERDE + "║ " + RESET); // Imprimo la parte izquierda que se muestra al ingresar texto
             contraseniaIngresada = pedirContrasenias(); //LLamo al metodo para que pida la contraseña y la guardo
             if (!contraseniaIngresada.equals("fin") && verificarContraseniaIngresada(contraseniaIngresada)){
                 agregarAArrayList(contraseniaIngresada);
             }
         }
+        // Mostrar pie del marco
+        System.out.println(VERDE + "╚═════════════════════════════════════════════════════════════════════" + RESET);
+
 
         for (int i = 0; i < contraseniasIngresadas.size(); i++) {
             boolean reglaUno;

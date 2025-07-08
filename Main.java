@@ -1,40 +1,42 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Main {
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+
     public static void main(String[] args) {
-	System.console(); // A veces forzar la consola activa ANSI
-        //VARIABLES DE COLORES
-        final String VERDE = "\u001B[32m";
-        final String ROJO = "\u001B[31m";
-        final String RESET = "\u001B[0m";
+        Scanner entrada = new Scanner(System.in);
+        ArrayList<String> contrasenas = new ArrayList<>();
+        String input;
 
-        //TITULO
-        System.out.println(VERDE + "██████╗  █████╗ ███████╗███████╗██╗    ██╗ ██████╗ ██████╗ ██████╗               ");
-        System.out.println("██╔══██╗██╔══██╗██╔════╝██╔════╝██║    ██║██╔═══██╗██╔══██╗██╔══██╗              ");
-        System.out.println("██████╔╝███████║███████╗███████╗██║ █╗ ██║██║   ██║██████╔╝██║  ██║              ");
-        System.out.println("██╔═══╝ ██╔══██║╚════██║╚════██║██║███╗██║██║   ██║██╔══██╗██║  ██║              ");
-        System.out.println("██║     ██║  ██║███████║███████║╚███╔███╔╝╚██████╔╝██║  ██║██████╔╝              ");
-        System.out.println("╚═╝     ╚═╝  ╚═╝╚══════╝╚══════╝ ╚══╝╚══╝  ╚═════╝ ╚═╝  ╚═╝╚═════╝               ");
-        System.out.println("                                                                                 ");
-        System.out.println(" █████╗  ██████╗███████╗██████╗ ████████╗ █████╗ ██████╗ ██╗     ███████╗███████╗");
-        System.out.println("██╔══██╗██╔════╝██╔════╝██╔══██╗╚══██╔══╝██╔══██╗██╔══██╗██║     ██╔════╝██╔════╝");
-        System.out.println("███████║██║     █████╗  ██████╔╝   ██║   ███████║██████╔╝██║     █████╗  ███████╗");
-        System.out.println("██╔══██║██║     ██╔══╝  ██╔═══╝    ██║   ██╔══██║██╔══██╗██║     ██╔══╝  ╚════██║");
-        System.out.println("██║  ██║╚██████╗███████╗██║        ██║   ██║  ██║██████╔╝███████╗███████╗███████║");
-        System.out.println("╚═╝  ╚═╝ ╚═════╝╚══════╝╚═╝        ╚═╝   ╚═╝  ╚═╝╚═════╝ ╚══════╝╚══════╝╚══════╝" + RESET);
+        // Mostrar encabezado del marco
+        System.out.println(ANSI_CYAN +
+            "╔════════════════════════════════════════════════════════════════════╗");
+        System.out.println("║    Ingrese contraseñas una por una (escriba 'fin' para terminar)  ║");
+        System.out.println("╟────────────────────────────────────────────────────────────────────╢" +
+            ANSI_RESET);
 
-        //EJEMPLO DE SALIDA
-        System.out.println(VERDE + "\n✅ <a> es aceptado." + RESET);
-        System.out.println(VERDE + "   → Debe de contener al menos una vocal" + RESET);
-        System.out.println(VERDE + "   → No debe tener 3 vocales consecutivas o tres consonantes consecutivas." + RESET);
-        System.out.println(VERDE + "   → No debe tener dos ocurrencias consecutivas de la misma letra, excepto por 'ee' o 'oo'." + RESET);
+        while (true) {
+            System.out.print("» "); // Indicador de entrada
+            input = entrada.nextLine().trim();
 
-        System.out.println(ROJO + "\n❌ <tv> no fue aceptado." + RESET);
-        System.out.println(ROJO + "   → Debe de contener al menos una vocal" + RESET);
-        System.out.println(VERDE + "   → No debe tener 3 vocales consecutivas o tres consonantes consecutivas." + RESET);
-        System.out.println(VERDE + "   → No debe tener dos ocurrencias consecutivas de la misma letra, excepto por 'ee' o 'oo'." + RESET);
+            if (input.equalsIgnoreCase("fin")) {
+                contrasenas.add("fin");
+                break;
+            }
 
-        System.out.println(ROJO + "\n❌ <bontres> no fue aceptado." + RESET);
-        System.out.println(VERDE + "   → Debe de contener al menos una vocal" + RESET);
-        System.out.println(ROJO + "   → No debe tener 3 vocales consecutivas o tres consonantes consecutivas." + RESET);
-        System.out.println(ROJO + "   → No debe tener dos ocurrencias consecutivas de la misma letra, excepto por 'ee' o 'oo'." + RESET);
+            contrasenas.add(input);
+        }
+
+        // Mostrar el contenido dentro del marco
+        System.out.println(ANSI_CYAN + "║                                                                    ║");
+        for (String pass : contrasenas) {
+            // Aseguramos que el texto quede dentro del marco (máx. 66 caracteres)
+            String linea = String.format("║ %-66s║", pass);
+            System.out.println(linea);
+        }
+        System.out.println("╚════════════════════════════════════════════════════════════════════╝" +
+            ANSI_RESET);
     }
 }
