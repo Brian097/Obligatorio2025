@@ -1,6 +1,5 @@
 package org.example;
 
-import java.lang.reflect.GenericArrayType;
 import java.util.ArrayList;
 import java.util.Scanner;
 
