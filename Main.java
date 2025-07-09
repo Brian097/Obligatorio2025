@@ -1,0 +1,40 @@
+public class Main {
+    public static void main(String[] args) {
+	System.console(); // A veces forzar la consola activa ANSI
+        //VARIABLES DE COLORES
+        final String VERDE = "\u001B[32m";
+        final String ROJO = "\u001B[31m";
+        final String RESET = "\u001B[0m";
+
+        //TITULO
+        System.out.println(VERDE + "██████╗  █████╗ ███████╗███████╗██╗    ██╗ ██████╗ ██████╗ ██████╗               ");
+        System.out.println("██╔══██╗██╔══██╗██╔════╝██╔════╝██║    ██║██╔═══██╗██╔══██╗██╔══██╗              ");
+        System.out.println("██████╔╝███████║███████╗███████╗██║ █╗ ██║██║   ██║██████╔╝██║  ██║              ");
+        System.out.println("██╔═══╝ ██╔══██║╚════██║╚════██║██║███╗██║██║   ██║██╔══██╗██║  ██║              ");
+        System.out.println("██║     ██║  ██║███████║███████║╚███╔███╔╝╚██████╔╝██║  ██║██████╔╝              ");
+        System.out.println("╚═╝     ╚═╝  ╚═╝╚══════╝╚══════╝ ╚══╝╚══╝  ╚═════╝ ╚═╝  ╚═╝╚═════╝               ");
+        System.out.println("                                                                                 ");
+        System.out.println(" █████╗  ██████╗███████╗██████╗ ████████╗ █████╗ ██████╗ ██╗     ███████╗███████╗");
+        System.out.println("██╔══██╗██╔════╝██╔════╝██╔══██╗╚══██╔══╝██╔══██╗██╔══██╗██║     ██╔════╝██╔════╝");
+        System.out.println("███████║██║     █████╗  ██████╔╝   ██║   ███████║██████╔╝██║     █████╗  ███████╗");
+        System.out.println("██╔══██║██║     ██╔══╝  ██╔═══╝    ██║   ██╔══██║██╔══██╗██║     ██╔══╝  ╚════██║");
+        System.out.println("██║  ██║╚██████╗███████╗██║        ██║   ██║  ██║██████╔╝███████╗███████╗███████║");
+        System.out.println("╚═╝  ╚═╝ ╚═════╝╚══════╝╚═╝        ╚═╝   ╚═╝  ╚═╝╚═════╝ ╚══════╝╚══════╝╚══════╝" + RESET);
+
+        //EJEMPLO DE SALIDA
+        System.out.println(VERDE + "\n✅ <a> es aceptado." + RESET);
+        System.out.println(VERDE + "   → Debe de contener al menos una vocal" + RESET);
+        System.out.println(VERDE + "   → No debe tener 3 vocales consecutivas o tres consonantes consecutivas." + RESET);
+        System.out.println(VERDE + "   → No debe tener dos ocurrencias consecutivas de la misma letra, excepto por 'ee' o 'oo'." + RESET);
+
+        System.out.println(ROJO + "\n❌ <tv> no fue aceptado." + RESET);
+        System.out.println(ROJO + "   → Debe de contener al menos una vocal" + RESET);
+        System.out.println(VERDE + "   → No debe tener 3 vocales consecutivas o tres consonantes consecutivas." + RESET);
+        System.out.println(VERDE + "   → No debe tener dos ocurrencias consecutivas de la misma letra, excepto por 'ee' o 'oo'." + RESET);
+
+        System.out.println(ROJO + "\n❌ <bontres> no fue aceptado." + RESET);
+        System.out.println(VERDE + "   → Debe de contener al menos una vocal" + RESET);
+        System.out.println(ROJO + "   → No debe tener 3 vocales consecutivas o tres consonantes consecutivas." + RESET);
+        System.out.println(ROJO + "   → No debe tener dos ocurrencias consecutivas de la misma letra, excepto por 'ee' o 'oo'." + RESET);
+    }
+}
