@@ -50,6 +50,26 @@ public class Main {
     }
 
     /**
+     * METODO PARA IMPRIMIR ENCABEZADO DEL MARCO
+     * Imprimo un encabezado para pedir las contraseñas al usuario
+     */
+    public static void mostrarEncabezado(){
+        // Mostrar encabezado del marco
+        System.out.println(VERDE + "╔════════════════════════════════════════════════════════════════════╗");
+        System.out.println(       "║    Ingrese contraseñas una por una (escriba '"+ ROJO + "fin" + VERDE +  "' para terminar)   ║");
+        System.out.println(       "╟────────────────────────────────────────────────────────────────────╝" + RESET);
+    }
+
+    /**
+     * METODO PARA IMPRIMIR EL PIE DEL MARCO
+     * Imprimo el cierre del marco después de pedir las contraseñas al usuario
+     */
+    public static void mostrarPie(){
+        // Mostrar pie del marco
+        System.out.println(VERDE + "╚═════════════════════════════════════════════════════════════════════" + RESET);
+    }
+
+    /**
      * METODO PARA PEDIR Y RETORNAR UNA CONTRASEÑA EN MINUSCULA
      * Este metodo le pide al usuario una contraseña, la convierte en minuscula y la retorna.
      * No se imprime el mensaje acá porque sino se estaria mostrando por cada contraseña que ingresa el usuario.
@@ -119,14 +139,14 @@ public class Main {
                  * así que establezco la contraseña como invalidae y imprimo un mensaje de que solo se aceptan letras.
                  */
                 valida = false;
-                System.out.println(VERDE + "║ " + ROJO + "✖ Solo se permiten letras" + RESET);
+                System.out.println(VERDE + "║ " + ROJO + "❌ Solo se permiten letras" + RESET);
             }
         } else {
             /*
              * En caso de que la condicion 'largoContraseña >= 1 && largoContraseña <= 20' no se cumpla
              * imprimo un mensaje de error y establezco la contraseña como invalida.
              */
-            System.out.println(VERDE + "║ " + ROJO + "✖ Las contraseñas deben contener como mínimo una y como máximo veinte letras." +  RESET);
+            System.out.println(VERDE + "║ " + ROJO + "❌ Las contraseñas deben contener como mínimo una y como máximo veinte letras." +  RESET);
             valida = false;
         }
 
@@ -250,49 +270,51 @@ public class Main {
      */
     public static void main(String[] args) {
         String contraseniaIngresada = "";
+        boolean esValida;
 
-        // Imprimimos el "logo" del programa al iniciar
+        // Imprimimos el "logo" del programa al iniciar y el encabezado
         mostrarBienvenida();
+        mostrarEncabezado();
 
-        // Mostrar encabezado del marco
-        System.out.println(VERDE + "╔════════════════════════════════════════════════════════════════════╗");
-        System.out.println(       "║    Ingrese contraseñas una por una (escriba '"+ ROJO + "fin" + VERDE +  "' para terminar)   ║");
-        System.out.println(       "╟────────────────────────────────────────────────────────────────────╝" + RESET);
 
-        while (!contraseniaIngresada.equals("fin")){
-            System.out.print(VERDE + "║ " + RESET); // Imprimo la parte izquierda que se muestra al ingresar texto
-            contraseniaIngresada = pedirContrasenias(); //LLamo al metodo para que pida la contraseña y la guardo
-            if (!contraseniaIngresada.equals("fin") && verificarContraseniaIngresada(contraseniaIngresada)){
+        while (!contraseniaIngresada.equals("fin")) {
+            // Imprimo la parte izquierda del marco que se muestra al ingresar texto
+            System.out.print(VERDE + "║ " + RESET);
+
+            //LLamo al metodo para que pida la contraseña y la guardo
+            contraseniaIngresada = pedirContrasenias();
+            esValida = verificarContraseniaIngresada(contraseniaIngresada); //Verifico que sea valida (no aceptable)
+
+            //Si la contraseña no es 'fin' que es la palabra es una contraseña válida (ósea solo tiene letras) la guardo
+            if (!contraseniaIngresada.equals("fin") && esValida){
                 agregarAArrayList(contraseniaIngresada);
             }
         }
-        // Mostrar pie del marco
-        System.out.println(VERDE + "╚═════════════════════════════════════════════════════════════════════" + RESET);
-
+        // Mostrar pie del marco luego de pedir las contraseñas
+        mostrarPie();
 
         for (int i = 0; i < contraseniasIngresadas.size(); i++) {
-            boolean reglaUno;
-            contraseniaIngresada = contraseniasIngresadas.get(i);
-            reglaUno = reglaUno(contraseniaIngresada);
-            if (reglaUno){
-                System.out.println(contraseniaIngresada + " cumple regla uno");
-            } else {
-                System.out.println(contraseniaIngresada + " NO cumple regla uno");
-            }
-            if (reglaDos(contraseniaIngresada)){
-                System.out.println(contraseniaIngresada + " cumple regla dos");
-            } else {
-                System.out.println(contraseniaIngresada + " NO cumple regla dos");
-            }
-            if (reglaTres(contraseniaIngresada)){
-                System.out.println(contraseniaIngresada + " cumple regla tres");
-            } else {
-                System.out.println(contraseniaIngresada + " NO cumple regla tres");
-            }
+
         }
-        // ✔︎ ✖
-        System.out.println("✔ ✖");︎
-        System.out.println(contraseniasIngresadas);
+        System.out.println(VERDE + "\n✅ <a> es aceptado." + RESET);
+        System.out.println(VERDE + "   → Debe de contener al menos una vocal" + RESET);
+        System.out.println(VERDE + "   → No debe tener 3 vocales consecutivas o tres consonantes consecutivas." + RESET);
+        System.out.println(VERDE + "   → No debe tener dos ocurrencias consecutivas de la misma letra, excepto por 'ee' o 'oo'." + RESET);
+
+        System.out.println(ROJO + "\n❌ <tv> no fue aceptado." + RESET);
+        System.out.println(ROJO + "   → Debe de contener al menos una vocal" + RESET);
+        System.out.println(VERDE + "   → No debe tener 3 vocales consecutivas o tres consonantes consecutivas." + RESET);
+        System.out.println(VERDE + "   → No debe tener dos ocurrencias consecutivas de la misma letra, excepto por 'ee' o 'oo'." + RESET);
+
+        System.out.println(ROJO + "\n❌ <bontres> no fue aceptado." + RESET);
+        System.out.println(VERDE + "   → Debe de contener al menos una vocal" + RESET);
+        System.out.println(ROJO + "   → No debe tener 3 vocales consecutivas o tres consonantes consecutivas." + RESET);
+        System.out.println(ROJO + "   → No debe tener dos ocurrencias consecutivas de la misma letra, excepto por 'ee' o 'oo'." + RESET);
+
+
+        // ❌
+        // ✅
+        //System.out.println(contraseniasIngresadas);
 
     }
 }
