@@ -119,14 +119,14 @@ public class Main {
                  * así que establezco la contraseña como invalidae y imprimo un mensaje de que solo se aceptan letras.
                  */
                 valida = false;
-                System.out.println(VERDE + "║ " + ROJO + "❌ Solo se permiten letras" + RESET);
+                System.out.println(VERDE + "║ " + ROJO + "✖ Solo se permiten letras" + RESET);
             }
         } else {
             /*
              * En caso de que la condicion 'largoContraseña >= 1 && largoContraseña <= 20' no se cumpla
              * imprimo un mensaje de error y establezco la contraseña como invalida.
              */
-            System.out.println(VERDE + "║ " + ROJO + "❌ Las contraseñas deben contener como mínimo una y como máximo veinte letras." +  RESET);
+            System.out.println(VERDE + "║ " + ROJO + "✖ Las contraseñas deben contener como mínimo una y como máximo veinte letras." +  RESET);
             valida = false;
         }
 
@@ -290,7 +290,8 @@ public class Main {
                 System.out.println(contraseniaIngresada + " NO cumple regla tres");
             }
         }
-
+        // ✔︎ ✖
+        System.out.println("✔ ✖");︎
         System.out.println(contraseniasIngresadas);
 
     }
