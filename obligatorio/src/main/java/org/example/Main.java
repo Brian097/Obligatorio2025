@@ -213,6 +213,35 @@ public class Main {
 
 
     /**
+     * METODO QUE VERIFICA LA REGLA TRES DE LA CONSIGNA
+     * Regla tres: "NO debe tener dos ocurrencias consecutivas de la misma letra,
+     * exepto por 'ee' o 'oo'."
+     */
+    public static boolean reglaTres(String contrasenia){
+        // Acá guardo en una variable la cantidad de caracteres que contiene la contraseña
+        final int largoContraseña = contrasenia.length();
+
+        // En estas variables guardo
+        char letra;
+        char letraAnterior;
+
+        /**
+         * Recorro la contraseña desde la posicion uno, obteniendo ese caracter y el anterior
+         */
+        for (int i = 1; i < largoContraseña; i++) {
+            letra = contrasenia.charAt(i);  // Caracter de la posicion 'i' dada por el for
+            letraAnterior = contrasenia.charAt(i - 1); // Caracter de la posicion 'i-1' dada por el for (el anterior)
+
+            // Compruebo que no tenga dos ocurrencias seguidas exeptuando 'ee' o 'oo'
+            if (letra == letraAnterior && (letra != 'e' || letra != 'o')) {
+                return false; // En caso de que no se cumpla la regla retorno false
+            }
+        }
+        return true; // En caso de que se cumpla la regla retorno true
+    }
+
+
+    /**
      * METODO PRINCIPAL DONDE SE EJECUTA LA LOGICA DEL PROGRAMA.
      */
     public static void main(String[] args) {
@@ -234,9 +263,18 @@ public class Main {
             reglaUno = reglaUno(contraseniaIngresada);
             if (reglaUno){
                 System.out.println(contraseniaIngresada + " cumple regla uno");
+            } else {
+                System.out.println(contraseniaIngresada + " NO cumple regla uno");
             }
             if (reglaDos(contraseniaIngresada)){
                 System.out.println(contraseniaIngresada + " cumple regla dos");
+            } else {
+                System.out.println(contraseniaIngresada + " NO cumple regla dos");
+            }
+            if (reglaTres(contraseniaIngresada)){
+                System.out.println(contraseniaIngresada + " cumple regla tres");
+            } else {
+                System.out.println(contraseniaIngresada + " NO cumple regla tres");
             }
         }
 
